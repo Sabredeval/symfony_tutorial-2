@@ -1,3 +1,4 @@
+#this file allows to work with profiler
 web_profiler:
     toolbar: true
     intercept_redirects: false

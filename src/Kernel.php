@@ -13,6 +13,7 @@ class Kernel extends BaseKernel
 {
     use MicroKernelTrait;
 
+    #file extenstions to be imported
     private const CONFIG_EXTS = '.{php,xml,yaml,yml}';
 
     public function registerBundles(): iterable
@@ -37,6 +38,7 @@ class Kernel extends BaseKernel
         $container->setParameter('container.dumper.inline_factories', true);
         $confDir = $this->getProjectDir().'/config';
 
+        #in Symfony 5.1 instead of "$loader->load" we have "$container->import"
         $loader->load($confDir.'/{packages}/*'.self::CONFIG_EXTS, 'glob');
         $loader->load($confDir.'/{packages}/'.$this->environment.'/*'.self::CONFIG_EXTS, 'glob');
         $loader->load($confDir.'/{services}'.self::CONFIG_EXTS, 'glob');
